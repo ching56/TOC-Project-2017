@@ -1,8 +1,7 @@
-# TOC Project 2017
+# Goodnight-cat telegram bot
 
-Template Code for TOC Project 2017
-
-A telegram bot based on a finite state machine
+A telegram bot based on a finite state machine.
+Send you the latest post of goodnight poem on facebook.
 
 ## Setup
 
@@ -19,7 +18,7 @@ pip install -r requirements.txt
 
 ### Secret Data
 
-`API_TOKEN` and `WEBHOOK_URL` in app.py **MUST** be set to proper values.
+`TELEGRAM_API_TOKEN`, `WEBHOOK_URL` and `FACEBOOK_TOKEN` in app.py **MUST** be set to proper values.
 Otherwise, you might not be able to run your code.
 
 ### Run Locally
@@ -47,15 +46,35 @@ python3 app.py
 ## Usage
 The initial state is set to `user`.
 
-Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
+Every time `user` state is triggered to `help`, `contact`, `random`, `goodnight` state, it will `go_back` to `user` state after the bot replies corresponding message.
+
+When `list` state is triggered, user could follow the prompt keyboard to get the list of poems.
 
 * user
-	* Input: "go to state1"
-		* Reply: "I'm entering state1"
+	* Input: "/start"
+		* Reply: "嗨，我是晚安貓，我是喜歡讀晚安詩的一隻貓🐱"、"睡前和我說一聲晚安，我會很開心得和你分享一首最新的晚安詩呦！"
 
-	* Input: "go to state2"
-		* Reply: "I'm entering state2"
+	* Input: "晚安"
+		* Reply: the latest post of goodnight poem（[晚安詩](https://www.facebook.com/goodnightpoem/)） on facebook.
 
+	* Input: "/help"
+		* Reply: "和我說「晚安」，讀一首詩給你。"、"其他功能： 1. /random: 再讀一首不一樣的詩  2. /list: 讀很多首詩  3. /contact: 看看作者的資訊，並留言給作者"
+
+	* Input: "/contact"
+		* Reply: "想和作者說什麼嗎？"、"傳封訊息吧：https://t.me/ching56"
+
+	* Input: "/random"
+		* Reply: "給你一首我喜歡的詩，喵"、and randomly reply a poem on the first page of goodnight poem.
+
+	* Input: "/list"
+		* Reply: "想要這麼多詩呀，可以和我說聲晚安嗎？"
+		* Input: "晚安"
+		* Reply: "共有 {num of poems on the first page of goodnight poem} 首詩，等我一下～"
+		* Input: "沒關係，但別睡著了呀！"
+		* Reply: "這裡有: {authors} 的詩，你有興趣嗎？"
+		* Input: "我有興趣，請通通給我吧。"
+		* Reply: all poems on the first page of goodnight poem
 
 ## Author
+[Ching li](https://github.com/ching56/)
 [Lee-W](https://github.com/Lee-W)
